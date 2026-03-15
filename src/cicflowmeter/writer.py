@@ -1,5 +1,6 @@
 import csv
 from typing import Protocol
+import logging
 
 import requests
 
@@ -30,6 +31,7 @@ class CSVWriter(OutputWriter):
 class HttpWriter(OutputWriter):
     def __init__(self, output_url) -> None:
         self.url = output_url
+        self.logger = logging.getLogger(__name__)
         self.session = requests.Session()
 
     def write(self, data):
